@@ -1,16 +1,91 @@
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 html,
 body {
-    width: 100%;
     height: 100%;
+    width: 100%;
 }
 
-#map {
+.center-card {
+    width: 320px;
+    margin: 80px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    background: #fff;
+    text-align: center;
+}
+
+.center-card h1 {
+    margin-bottom: 10px;
+}
+
+.center-card input {
     width: 100%;
-    height: 100%;
+    padding: 10px;
+    margin: 8px 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.role-row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 12px;
+}
+
+.role-row label {
+    cursor: pointer;
+}
+
+#topbar {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 12px;
+    background: #f7f7f7;
+    border-bottom: 1px solid #eee;
+}
+
+#controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 10px;
+}
+
+.toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toggle input {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* small back button */
+
+#backBtn {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+/* map container handled inline in EJS */
+
+.hint {
+    color: #666;
+    font-size: 13px;
+    margin-top: 10px;
 }

@@ -2,31 +2,39 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Real-Time Tracking App</title>
-
-    <!-- ✅ Your custom CSS -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bus Tracking - Join</title>
     <link rel="stylesheet" href="/css/style.css" />
-
-    <!-- ✅ Leaflet CSS (map styles) -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-    <!-- Optional: You can add favicon or meta tags here -->
 </head>
 
 <body>
-    <!-- ✅ Map container -->
-    <div id="map" style="height: 100vh; width: 100vw;"></div>
+    <div class="center-card">
+        <h1>Bus Tracking</h1>
 
-    <!-- ✅ Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <label>Bus Number</label>
+        <input id="busNumber" placeholder="e.g. 123A" />
 
-    <!-- ✅ Socket.io client -->
-    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+        <div class="role-row">
+            <label><input type="radio" name="role" value="student" checked /> Student</label>
+            <label><input type="radio" name="role" value="driver" /> Driver</label>
+        </div>
 
-    <!-- ✅ Your custom JS -->
-    <script src="/js/script.js"></script>
+        <button id="joinBtn">Join</button>
+
+        <p class="hint">Student sees bus. Driver shares location with toggle on map page.</p>
+    </div>
+
+    <script>
+        const joinBtn = document.getElementById("joinBtn");
+        joinBtn.addEventListener("click", () => {
+            const bus = document.getElementById("busNumber").value.trim();
+            const role = document.querySelector('input[name="role"]:checked').value;
+            if (!bus) return alert("Enter bus number");
+            // Redirect to map route with role & bus in query
+            window.location = `/map?role=${role}&bus=${encodeURIComponent(bus)}`;
+        });
+    </script>
 </body>
 
 </html>
