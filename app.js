@@ -7,12 +7,10 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
-// Set EJS as template engine
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Routes
 app.get("/", (req, res) => {
     res.render("index");
 });
@@ -22,26 +20,21 @@ app.get("/map", (req, res) => {
     res.render("map", { role, bus });
 });
 
-// Socket.io logic
+// ✅ Real-time location sharing
 io.on("connection", (socket) => {
-    console.log("🟢 A user connected");
+    console.log("User connected");
 
-    socket.on("join-bus", (busId) => {
-        socket.join(busId);
-        console.log(`User joined bus ${busId}`);
+    socket.on("joinBus", ({ busNumber, role }) => {
+        socket.join(busNumber);
+        console.log(`${role} joined bus ${busNumber}`);
     });
 
-    socket.on("driver-location", (data) => {
-        io.to(data.busId).emit("bus-location", data);
+    socket.on("driverLocation", ({ busNumber, latitude, longitude }) => {
+        io.to(busNumber).emit("busLocationUpdate", { latitude, longitude });
     });
 
-    socket.on("disconnect", () => {
-        console.log("🔴 A user disconnected");
-    });
+    socket.on("disconnect", () => console.log("User disconnected"));
 });
 
-// Start server
 const PORT = 3000;
-server.listen(PORT, () => {
-    console.log(`✅ Server running on http://localhost:${PORT}`);
-});
+server.listen(PORT, () => console.log(`✅ Server running at http://localhost:${PORT}`));
