@@ -1,6 +1,8 @@
-const socket = io(window.location.origin, {
+const socket = io({
     transports: ["websocket"],
+    path: "/socket.io/",
 });
+
 
 
 const map = L.map('map').setView([20.5937, 78.9629], 5);
