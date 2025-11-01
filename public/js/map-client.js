@@ -1,4 +1,8 @@
-const socket = io();
+const socket = io(window.location.origin, {
+    transports: ["websocket"],
+});
+
+
 const map = L.map('map').setView([20.5937, 78.9629], 5);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }).addTo(map);
 
