@@ -8,6 +8,9 @@ const socket = io({
 const map = L.map('map').setView([20.5937, 78.9629], 5);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }).addTo(map);
 
+map.attributionControl.addAttribution('Unreal_Vikhyat Maps');
+
+
 // 🚌 Bus Icon
 const busIcon = L.icon({
     iconUrl: 'https://cdn-icons-png.flaticon.com/512/1068/1068631.png',
